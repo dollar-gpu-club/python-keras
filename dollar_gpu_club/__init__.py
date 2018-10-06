@@ -154,5 +154,7 @@ class FinalCheckpointCallback(Callback):
 		sys.exit()
 
 	def on_train_end(self, logs):
-		print('sending post request to: {}/{}/finish'.format(APP_DOMAIN, JOB_ID))
-		requests.post('{}/{}/finish'.format(APP_DOMAIN, JOB_ID), data={})
+		if DEV_MODE:
+			print('skipping sending post request to: {}/{}/finish'.format(APP_DOMAIN, JOB_ID))
+		else:
+			requests.post('{}/{}/finish'.format(APP_DOMAIN, JOB_ID), data={})
