@@ -37,13 +37,15 @@ def fit(model,
 		print('skipping making a POST request to {}/{}/start'.format(APP_DOMAIN, JOB_ID))
 	else:
 		requests.post('{}/{}/start'.format(APP_DOMAIN, JOB_ID), data={})
+
+	cbs = [MetricsCallback(), FinalCheckpointCallback()] + callbacks
 	return model.fit(
 		x=x,
 		y=y,
 		batch_size=batch_size,
 		epochs=epochs,
 		verbose=verbose,
-		callbacks=callbacks,
+		callbacks=cbs,
 		validation_split=validation_split,
 		validation_data=validation_data,
 		shuffle=shuffle,
@@ -53,12 +55,6 @@ def fit(model,
 		steps_per_epoch=steps_per_epoch,
 		validation_steps=validation_steps,
 	)
-
-def callbacks():
-	return [
-		MetricsCallback(),
-		FinalCheckpointCallback(),
-	]
 
 def load_checkpoint(model):
 	if _checkpoint_exists():
