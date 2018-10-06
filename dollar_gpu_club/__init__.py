@@ -38,7 +38,9 @@ def fit(model,
 	else:
 		requests.post('{}/{}/start'.format(APP_DOMAIN, JOB_ID), data={})
 
-	cbs = [MetricsCallback(), FinalCheckpointCallback()] + callbacks
+	cbs = [MetricsCallback(), FinalCheckpointCallback()]
+	cbs = cbs + callbacks if callbacks else cbs
+
 	return model.fit(
 		x=x,
 		y=y,
