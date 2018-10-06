@@ -18,7 +18,7 @@ APP_DOMAIN = 'http://localhost:8080' if DEV_MODE else os.environ['APP_DOMAIN']
 CHECKPOINT_FILE = '~/dev.h5' if DEV_MODE else '{}.h5'.format(JOB_ID)
 ERROR_MSG = 'ERROR. JOB_ID: {}. BUCKET_NAME: {}. CHECKPOINT_FILE: {}.'.format(JOB_ID, BUCKET_NAME, CHECKPOINT_FILE)
 
-def compile(model,
+def load_and_compile(model,
 			optimizer,
 			loss=None,
 			metrics=None,
