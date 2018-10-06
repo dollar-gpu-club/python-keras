@@ -54,7 +54,7 @@ def fit(model,
 
 def callbacks():
 	return [
-		MetricsCheckpoint(),
+		MetricsCallback(),
 		FinalCheckpointCallback(),
 	]
 
@@ -86,7 +86,7 @@ def _checkpoint_exists():
 
 class MetricsCallback(Callback):
 	def __init__(self):
-		super(MetricsCheckpoint, self).__init__()
+		super(MetricsCallback, self).__init__()
 
 	def on_epoch_end(self, epoch, logs=None):
 		loss, acc = logs.get('loss'), logs.get('acc')
