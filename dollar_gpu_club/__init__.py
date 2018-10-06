@@ -152,3 +152,7 @@ class FinalCheckpointCallback(Callback):
 			s3.meta.client.upload_file(CHECKPOINT_FILE, BUCKET_NAME, CHECKPOINT_FILE)
 			requests.post('{}/{}/halt'.format(APP_DOMAIN, JOB_ID), data={})
 		sys.exit()
+
+	def on_train_end(self, logs):
+		print('sending post request to: {}/{}/finish'.format(APP_DOMAIN, JOB_ID))
+		requests.post('{}/{}/finish'.format(APP_DOMAIN, JOB_ID), data={})
