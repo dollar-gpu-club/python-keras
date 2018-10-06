@@ -73,9 +73,9 @@ def load_checkpoint(model):
 def _checkpoint_exists():
 	try:
 		if DEV_MODE:
-			s3.Object(BUCKET_NAME, CHECKPOINT_FILE).load()
-		else:
 			print('skipping checking if there are existing checkpoints')
+		else:
+			s3.Object(BUCKET_NAME, CHECKPOINT_FILE).load()
 	except botocore.exceptions.ClientError as e:
 		if e.response['Error']['Code'] == '404':
 			return False
