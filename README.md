@@ -10,7 +10,7 @@ $ git clone git@github.com:dollar-gpu-club/python-keras.git
 $ pip install -e .
 ```
 
-3) Import helper methods
+3) Import helper methods in Python 3:
 ```
 from dollar_gpu_club import fit, load_and_compile
 ```
