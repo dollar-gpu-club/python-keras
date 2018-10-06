@@ -12,5 +12,7 @@ $ pip install -e .
 
 3) Import helper methods
 ```
-from dollar_gpu_club import fit, load_checkpoint
+from dollar_gpu_club import fit, load_and_compile
 ```
+
+4) Replace `model.fit(...)` with `fit(model, ...)` and `model.compile(...)` with `load_and_compile(model, ...)`.
