@@ -37,7 +37,9 @@ def fit(model,
 		print('skipping making a POST request to {}/{}/start'.format(APP_DOMAIN, JOB_ID))
 	else:
 		requests.post('{}/{}/start'.format(APP_DOMAIN, JOB_ID), data={})
-	model.fit(
+	return model.fit(
+		x=x,
+		y=y,
 		batch_size=batch_size,
 		epochs=epochs,
 		verbose=verbose,
