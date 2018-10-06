@@ -12,5 +12,5 @@ $ pip install -e .
 
 3) Import helper methods
 ```
-from dollar_gpu_club import fit, callbacks, load_checkpoint
+from dollar_gpu_club import fit, load_checkpoint
 ```
