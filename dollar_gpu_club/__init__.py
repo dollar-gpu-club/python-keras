@@ -9,9 +9,9 @@ import botocore
 import numpy as np
 from keras.callbacks import Callback
 
-s3 = boto3.resource('s3')
-
 DEV_MODE = os.environ.get('DEV_MODE', True)
+
+s3 = None if DEV_MODE else boto3.resource('s3')
 JOB_ID = 'dev_job_id' if DEV_MODE else os.environ['JOB_ID']
 BUCKET_NAME = 'dev_bucket' if DEV_MODE else os.environ['BUCKET_NAME']
 APP_DOMAIN = 'http://localhost:8080' if DEV_MODE else os.environ['APP_DOMAIN']
