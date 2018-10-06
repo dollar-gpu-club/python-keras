@@ -139,7 +139,7 @@ class FinalCheckpointCallback(Callback):
 	def _is_dying(self):
 		if DEV_MODE:
 			return False
-		return requests.get("http://169.254.169.254/latest/meta-data/spot/instance-action").status_code != 200
+		return requests.get('{}/{}/mock-aws'.format(APP_DOMAIN, JOB_ID)).status_code != 200
 
 	def on_epoch_end(self, epoch, logs=None):
 		if not self._is_dying():
