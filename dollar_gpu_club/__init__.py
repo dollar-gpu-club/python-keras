@@ -18,6 +18,25 @@ APP_DOMAIN = 'http://localhost:8080' if DEV_MODE else os.environ['APP_DOMAIN']
 CHECKPOINT_FILE = '~/dev.h5' if DEV_MODE else '{}.h5'.format(JOB_ID)
 ERROR_MSG = 'ERROR. JOB_ID: {}. BUCKET_NAME: {}. CHECKPOINT_FILE: {}.'.format(JOB_ID, BUCKET_NAME, CHECKPOINT_FILE)
 
+def compile(model,
+			optimizer,
+			loss=None,
+			metrics=None,
+			loss_weights=None,
+			sample_weight_mode=None,
+			weighted_metrics=None,
+			target_tensors=None):
+	_load_checkpoint(model)
+	return model.compile(
+		optimizer,
+		loss=loss,
+		metrics=metrics,
+		loss_weights=loss_weights,
+		sample_weight_mode=sample_weight_mode,
+		weighted_metrics=weighted_metrics,
+		target_tensors=target_tensors,
+	)
+
 def fit(model,
 		x=None,
 		y=None,
@@ -58,7 +77,7 @@ def fit(model,
 		validation_steps=validation_steps,
 	)
 
-def load_checkpoint(model):
+def _load_checkpoint(model):
 	if _checkpoint_exists():
 		print('existing checkpoint found!')
 		try:
